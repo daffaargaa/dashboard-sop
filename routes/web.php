@@ -5,6 +5,7 @@ use App\Http\Controllers\FPPController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DraftController;
+use App\Http\Controllers\ApprovalSOPController;
 use App\Http\Controllers\MasterUsersTafisController;
 
 /*
@@ -19,7 +20,7 @@ use App\Http\Controllers\MasterUsersTafisController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('loginv2');
 });
 
 // login
@@ -40,6 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Master Users Tafis
     Route::get('/masterUsersTafis', [MasterUsersTafisController::class, 'index']);
+    Route::post('/masterUsersTafis', [MasterUsersTafisController::class, 'masterUsersTafisStore'])->name('masterUsersTafisStore');
+    Route::get('/masterUsersTafis/destroy/{id}', [MasterUsersTafisController::class, 'masterUsersTafisDestroy']);
 
     // Approval
     Route::get('/approval', [FPPController::class, 'index']);
@@ -52,6 +55,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/fppSop/details/{id}', [FPPController::class, 'fppSopDetails']); 
     Route::get('/fppSop/export/{id}', [FPPController::class, 'fppSopExport']);
     Route::get('/fppSop/destroy/{id}', [FPPController::class, 'fppSopDestroy']);
+
+    // Approval SOP
+    Route::get('/approvalSop', [ApprovalSOPController::class, 'index']);
+    Route::post('/approvalSop', [ApprovalSOPController::class, 'approvalSopStore'])->name('approvalSopStore');
 });
 
 
