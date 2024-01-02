@@ -17,7 +17,7 @@ class MasterUsersTafisController extends Controller
 
         return view('masterUsersTafis.index', $data);
     }
-
+    
     public function masterUsersTafisStore(Request $request) {
 
         $status = 'DISABLED';

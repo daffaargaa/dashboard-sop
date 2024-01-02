@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Approval SOP
     Route::get('/approvalSop', [ApprovalSOPController::class, 'index']);
     Route::post('/approvalSop', [ApprovalSOPController::class, 'approvalSopStore'])->name('approvalSopStore');
+    Route::get('/approvalSop/download/{id}', [ApprovalSOPController::class, 'approvalSopDownload']);
+
 });
 
 

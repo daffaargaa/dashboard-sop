@@ -24,7 +24,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form action="{{ @route('approvalSopStore') }}" method="post">
+                    <form action="{{ @route('approvalSopStore') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
 
@@ -44,7 +44,7 @@
                             </div>
 
                             {{-- Sampe File Draft dulu, ubah ke .png lalu simpan ke folder --}}
-                            
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -56,5 +56,33 @@
         </div>
     </div>
 
+    {{-- Table --}}
+    <div class="container p-2">
+        <table class="table" style="margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th>NRA</th>
+                    <th>Judul</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($sop_approval_draft as $item)
+                    <tr>
+                        <td>{{ $item->nra }}</td>
+                        <td>{{ $item->judul }}</td>
+                        <td>{{ $item->status }}</td>
+                        <td>
+                            <a href="/approvalSop/download/{{ $item->id }}" target="_blank" class="btn btn-info"><i
+                                    class='bx bx-download'></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 @endsection
