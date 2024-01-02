@@ -1,49 +1,60 @@
-@extends('layout.layout')
-@section('title', 'Approval Draft SOP')
+@extends('layout.sidebar')
+
+@section('approvalSopActive', 'active')
 
 @section('content')
-    <style>
-        .card-body {
-            display: flex;
-        }
+    <div class="container">
+        @if (Session::has('input_success'))
+            <div class="alert alert-success">
+                {{ Session::get('input_success') }}
+            </div>
+        @endif
 
-        .left-section {
-            flex: 1;
-        }
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add New
+        </button>
 
-        .right-section {
-            /* display: flex; */
-            flex: 1;
-            /* justify-content: flex-end; */
-        }
-    </style>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Draft SOP</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
-    <div class="container p-2">
-        <div class="card">
-            <div class="card-body">
-                <div class="left-section">
-                    <a href="/approve-rendy" class="btn btn-primary">Rendy</a>
-                    @if ($urutan[0]->urutan == 1)
-                        <a href="/approve-dede" class="btn btn-secondary">Dede</a>
-                    @elseif ($urutan[0]->urutan == 2)
-                        <a href="/approve-mka" class="btn btn-success">MKA</a>
-                </div>
-                <div class="right-section">
-                @elseif ($urutan[0]->urutan == 3)
-                    <a href="/approve-kkarpa" class="btn btn-primary">KKA-RPA</a>
-                @else
-                    <a href="/approve-kia" class="btn btn-secondary">KIA</a>
-                    @endif
+                    <form action="{{ @route('approvalSopStore') }}" method="post">
+                        @csrf
+                        <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">NRA</label>
+                                <input type="text" class="form-control" name="nra">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Title</label>
+                                <input type="text" class="form-control" name="judul_produk">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">File Draft</label>
+                                <input type="file" class="form-control" name="file_draft">
+                            </div>
+
+                            {{-- Sampe File Draft dulu, ubah ke .png lalu simpan ke folder --}}
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container p-2">
-        <div class="card">
-            <div class="card-body">
-                <img src="{{ asset('sop/new_sop.png') }}">
-            </div>
-        </div>
-    </div>
+
 @endsection

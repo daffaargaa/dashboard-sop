@@ -26,7 +26,24 @@
 
             {{-- Sidebar list --}}
             <ul class="list-unstyled px-2">
-                @yield('sidebar-active')
+                {{-- @yield('sidebar-active') --}}
+                <li class="@yield('homeActive')"><a href="/home" class="text-decoration-none px-3 py-2 d-block"><i
+                            class="fal fa-home"></i> Home</a>
+                </li>
+
+                <li class="@yield('masterUsersTafisActive')"><a href="/masterUsersTafis"
+                        class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-cog'></i> </i> Master Users
+                        Tafis</a>
+                </li>
+
+                <li class="@yield('fppSopActive')"><a href="/fppSop" class="text-decoration-none px-3 py-2 d-block"><i
+                            class="fal fa-list"></i>
+                        FPP SOP</a></li>
+
+                <li class="@yield('approvalSopActive')"><a href="/approvalSop" class="text-decoration-none px-3 py-2 d-block"><i
+                            class='bx bx-calendar-check'></i>
+                        Approval SOP</a></li>
+
             </ul>
             <hr class="h-color mx-2">
 
@@ -49,11 +66,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0 px-4 align-items-center">
-                            <li class="nav-item d-flex justify-content-center align-items-center"       >
+                            <li class="nav-item d-flex justify-content-center align-items-center">
                                 <h5>
                                     {{ Auth::user()->name }}
                                     {{ Auth::user()->nik }}
-                                </h5>  
+                                </h5>
                             </li>
                         </ul>
 
@@ -65,7 +82,7 @@
                                     <button class="btn btn-secondary" type="submit">Logout</button>
                                 </form>
                             </li>
-                            
+
                         </ul>
 
                     </div>

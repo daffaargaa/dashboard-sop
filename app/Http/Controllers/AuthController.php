@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -40,11 +42,28 @@ class AuthController extends Controller
             'password'=> $request->password
         ];
 
+        $user = DB::table('users')->where('email', '=', $request->email)->first();
+
         if(Auth::attempt($credentials)) {
+
+            $logs = DB::table('logs')->where('nik', $user->nik)->first();
+            
+            if (!$logs) {
+                DB::table('logs')->insert([
+                    'nik' => $user->nik,
+                    'nama' => $user->name,
+                    'count' => 1,
+                ]);
+            } 
+            else {
+                DB::table('logs')->where('nik', $user->nik)->update([
+                    'count' => $logs->count + 1,
+                    'updated_at' => Carbon::now(),
+                ]);
+            }
 
             return redirect('/home')->with([
                 'success' => 'Login berhasil',
-
             ]);
         }
 
