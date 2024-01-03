@@ -63,7 +63,7 @@
                             <div class="mb-3">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" role="switch"
-                                        id="flexSwitchCheckChecked" name="active" checked>
+                                        id="flexSwitchCheckChecked" name="active" value="ENABLED" checked>
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
                                 </div>
                             </div>

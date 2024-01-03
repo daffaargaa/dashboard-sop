@@ -19,17 +19,15 @@ class MasterUsersTafisController extends Controller
     }
     
     public function masterUsersTafisStore(Request $request) {
-
-        $status = 'DISABLED';
-
-        if($request->active == 'on') {
-            $status = 'ENABLED';
+        
+        if(!$request->active) {
+            $request->active = 'DISABLED';
         }
 
         $insertHdr = DB::table('tafis_ms_users_hdr')->insert([
             'kode_dept' => $request->kode_dept,
             'sub_dept' => $request->sub_dept,
-            'status' => $status,
+            'status' => $request->active,
             'created_at' => Carbon::now(),
         ]);
 

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class ApprovalSOPController extends Controller
 {
@@ -15,25 +16,32 @@ class ApprovalSOPController extends Controller
     }
 
     public function approvalSopStore(Request $request) {
-
+        
         $file = $request->file('file_draft');
+        $filename = $file->getClientOriginalName();
+        $filenameWithoutExt = pathinfo($filename, PATHINFO_FILENAME);
 
         if ($file) {
-            $filename = $file->getClientOriginalName();
-            Storage::putFileAs('public\approvalSop', $file, $filename);
+            Storage::putFileAs('public\approvalSop\\' . $filenameWithoutExt, $file, $filename);
         }
 
-        $path = '\storage\approvalSop\\' . $file->getClientOriginalName();
+        $dir = public_path('storage\approvalSop\\' . $filenameWithoutExt . '\\' . $filename);
+        $out = public_path('storage\approvalSop\\' . $filenameWithoutExt . '\\');
+        $command = "magick -density 400 \"" . $dir . "\" -resize 800x -quality 100 \"" . $out . "-%d.png\"";
+        exec($command, $output, $returnCode);
 
+        // dd($returnCode);
+
+        // Insert ke Database
         $input = DB::table('sop_approval_draft')->insert([
             'nra' => $request->nra,
             'judul' => $request->judul_produk,
-            'file' => $path,
+            'file' => $filename,
             'status' => 1,
             'created_at' => Carbon::now(),
         ]);
 
-        if ($input) {
+        if (true) {
             return back()->with('input_success', 'Input berhasil!!');
         }
         else {
@@ -43,6 +51,12 @@ class ApprovalSOPController extends Controller
 
     public function approvalSopDownload($id) {
         $path = DB::table('sop_approval_draft')->where('id', $id)->select('file')->first();
-        return response()->file(public_path() . $path->file);
+    
+        return response()->file(public_path() . $path->file, $headers);
+        // return Response::file(public_path() . $path->file, $headers);
+    }
+
+    public function approvalSopDetails($id) {
+        
     }
 }
