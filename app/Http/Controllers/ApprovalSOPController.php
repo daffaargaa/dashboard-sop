@@ -53,10 +53,26 @@ class ApprovalSOPController extends Controller
         $path = DB::table('sop_approval_draft')->where('id', $id)->select('file')->first();
     
         return response()->file(public_path() . $path->file, $headers);
-        // return Response::file(public_path() . $path->file, $headers);
     }
 
     public function approvalSopDetails($id) {
+        $data = DB::table('sop_approval_draft')->where('id', $id)->first();
         
+        // Ambil nama folder
+        $folder = pathinfo($data->file, PATHINFO_FILENAME);
+
+        $folder = pathinfo($data->file, PATHINFO_FILENAME);
+        $path = public_path('storage/approvalSop/' . $folder);
+        $files = scandir($path);
+        $files = array_diff($files, ['.', '..']);
+        array_pop($files);
+
+        // dd($files);
+        
+        return view('approvalSop.details')->with([
+                'data' => $data,
+                'files' => $files,
+            ]);
+
     }
 }

@@ -3,6 +3,15 @@
 @section('approvalSopActive', 'active')
 
 @section('content')
+    <style>
+        .waiting {
+            display: inline;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: #9A9A9A;
+            color: #FFFFFF;
+        }
+    </style>
     <div class="container">
         @if (Session::has('input_success'))
             <div class="alert alert-success">
@@ -72,10 +81,17 @@
                     <tr>
                         <td>{{ $item->nra }}</td>
                         <td>{{ $item->judul }}</td>
-                        <td>{{ $item->status }}</td>
+
                         <td>
-                            <a href="/approvalSop/download/{{ $item->id }}" target="_blank" class="btn btn-info"><i
-                                    class='bx bx-download'></i></a>
+                            @if ($item->status == 1)
+                                <div class="waiting">● Waiting</div>
+                            @endif
+                        </td>
+                        <td>
+                            {{-- <a href="/approvalSop/download/{{ $item->id }}" target="_blank" class="btn btn-info"><i
+                                    class='bx bx-download'></i></a> --}}
+                            <a href="/approvalSop/details/{{ $item->id }}" class="btn btn-secondary"><i
+                                    class="bx bx-link-external"></i></a>
                         </td>
                     </tr>
                 @endforeach

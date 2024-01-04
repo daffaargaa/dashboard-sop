@@ -96,9 +96,9 @@
                         <td>{{ $item->sub_dept }}</td>
                         <td>
                             @if ($item->status == 'ENABLED')
-                                <div class="enabled">Enabled</div>
+                                <div class="enabled">● Enabled</div>
                             @else
-                                <div class="disabled">Disabled</div>
+                                <div class="disabled">● Disabled</div>
                             @endif
                         </td>
                         <td>
