@@ -32,8 +32,12 @@
                 </li>
 
                 <li class="@yield('masterUsersTafisActive')"><a href="/masterUsersTafis"
-                        class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-cog'></i> </i> Master Users
+                        class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-cog'></i> Master Users
                         Tafis</a>
+                </li>
+
+                <li class="@yield('masterSosialisasiActive')"><a href="/masterSosialisasi"
+                        class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-desktop'></i> Master Sosialisasi</a>
                 </li>
 
                 <li class="@yield('fppSopActive')"><a href="/fppSop" class="text-decoration-none px-3 py-2 d-block"><i

@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ApprovalSOPController;
 use App\Http\Controllers\MasterUsersTafisController;
+use App\Http\Controllers\MasterSosialisasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/masterUsersTafis', [MasterUsersTafisController::class, 'index']);
     Route::post('/masterUsersTafis', [MasterUsersTafisController::class, 'masterUsersTafisStore'])->name('masterUsersTafisStore');
     Route::get('/masterUsersTafis/destroy/{id}', [MasterUsersTafisController::class, 'masterUsersTafisDestroy']);
+
+    // Master Sosialisasi
+    Route::get('/masterSosialisasi', [MasterSosialisasiController::class, 'index']);
+    
 
     // Approval
     Route::get('/approval', [FPPController::class, 'index']);

@@ -10,7 +10,7 @@
 
     <?php
     
-    // Ambil data file di dalam folder
+    // Ambil data file di dalam folderP
     $folder = pathinfo($data->file, PATHINFO_FILENAME);
     $path = public_path('storage/approvalSop/' . $folder);
     $files = scandir($path);
