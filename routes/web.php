@@ -5,6 +5,7 @@ use App\Http\Controllers\FPPController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DraftController;
+use App\Http\Controllers\ArsipSOPController;
 use App\Http\Controllers\ApprovalSOPController;
 use App\Http\Controllers\MasterUsersTafisController;
 use App\Http\Controllers\MasterSosialisasiController;
@@ -66,6 +67,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/approvalSop', [ApprovalSOPController::class, 'approvalSopStore'])->name('approvalSopStore');
     Route::get('/approvalSop/download/{id}', [ApprovalSOPController::class, 'approvalSopDownload']);
     Route::get('/approvalSop/details/{id}', [ApprovalSOPController::class, 'approvalSopDetails']);
+
+    // Arsip SOP
+    Route::get('/arsipSop', [ArsipSOPController::class, 'index']);
+
+    Route::post('/arsipSopMsDept', [ArsipSOPController::class, 'arsipSopMsDeptStore'])->name('arsipSopMsDeptStore');
 
 });
 
