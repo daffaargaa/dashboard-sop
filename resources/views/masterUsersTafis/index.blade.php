@@ -3,23 +3,7 @@
 @section('masterUsersTafisActive', 'active')
 
 @section('content')
-    <style>
-        .enabled {
-            display: inline;
-            padding: 5px;
-            border-radius: 10px;
-            background-color: #12B76A;
-            color: #FFFFFF;
-        }
 
-        .disabled {
-            display: inline;
-            padding: 5px;
-            border-radius: 10px;
-            background-color: #F04438;
-            color: #FFFFFF;
-        }
-    </style>
     {{-- Add new Modal --}}
     <div class="container">
         @if (Session::has('input_success'))

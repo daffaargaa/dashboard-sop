@@ -70,8 +70,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Arsip SOP
     Route::get('/arsipSop', [ArsipSOPController::class, 'index']);
+    Route::get('/arsipSop/{dept}', [ArsipSOPController::class, 'indexDept']);
+    Route::post('/arsipSop/newArchive', [ArsipSOPController::class, 'arsipSopNewArchiveStore'])->name('arsipSopNewArchiveStore');
+    Route::get('/arsipSop/destroy/{id}', [ArsipSOPController::class, 'arsipSopDestroy']);
 
-    Route::post('/arsipSopMsDept', [ArsipSOPController::class, 'arsipSopMsDeptStore'])->name('arsipSopMsDeptStore');
+
+    Route::post('/arsipSop/msDept', [ArsipSOPController::class, 'arsipSopMsDeptStore'])->name('arsipSopMsDeptStore');
+    Route::get('/arsipSop/msDept/destroy/{id}', [ArsipSOPController::class, 'arsipSopMsDeptDestroy']);
+
+    Route::post('/arsipSop/msProduct', [ArsipSOPController::class, 'arsipSopMsProductStore'])->name('arsipSopMsProductStore');
+    Route::get('/arsipSop/msProduct/destroy/{id}', [ArsipSOPController::class, 'arsipSopMsProductDestroy']);
+
+    Route::post('/arsipSop/msJenis', [ArsipSOPController::class, 'arsipSopMsJenisStore'])->name('arsipSopMsJenisStore');
+    Route::get('/arsipSop/msJenis/destroy/{id}', [ArsipSOPController::class, 'arsipSopMsProductDestroy']);
+    
+    
 
 });
 

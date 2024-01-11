@@ -12,6 +12,32 @@
     <link rel="stylesheet" href="{{ asset('css/style_layout.css') }}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+
+    <style>
+        .enabled {
+            display: inline;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: #12B76A;
+            color: #FFFFFF;
+        }
+
+        .disabled {
+            display: inline;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: #F04438;
+            color: #FFFFFF;
+        }
+
+        .status {
+            display: inline;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: #796695;
+            color: #FFFFFF;
+        }
+    </style>
 </head>
 
 <body>
