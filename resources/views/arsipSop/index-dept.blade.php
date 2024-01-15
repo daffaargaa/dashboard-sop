@@ -17,13 +17,28 @@
             <thead>
                 <tr>
                     <th>NRA</th>
-                    <th>Product</th>
-                    <th>Description</th>
+                    <th>Produk</th>
+                    <th>Keterangan</th>
+ 
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-
+                    @if (count($sop_arsip) > 0)
+                        @foreach ($sop_arsip as $item)
+                            <tr>
+                                <td>{{ $item->nra }}</td>
+                                <td>{{ $item->produk }}</td>
+                                <td>{{ $item->keterangan }}</td>
+                                <td>
+                                    <a href="#" class="btn btn-secondary"><i
+                                    class="bx bx-link-external"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr><td></td></tr>
+                    @endif
             </tbody>
         </table>
     </div>
@@ -102,15 +117,15 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Flag OPR</label>
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch"
-                                    id="flexSwitchCheckChecked" name="active" value="ENABLED" checked>
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                    name="active" value="ENABLED" checked>
                                 <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
                             </div>
                         </div>
 
 
 
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

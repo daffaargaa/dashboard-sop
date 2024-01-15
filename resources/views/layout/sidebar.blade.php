@@ -77,6 +77,9 @@
                 <li class="@yield('arsipSopActive')"><a href="/arsipSop" class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-box'></i>
                         Arsip SOP</a></li>
 
+                <li class="@yield('sopOperationActive')"><a href="/sopOperation" class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-cog'></i>
+                        SOP Operation</a></li>
+
             </ul>
             <hr class="h-color mx-2">
 

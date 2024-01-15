@@ -26,12 +26,12 @@
     <div class="container mt-3">
         <div class="row">
 
-            @foreach ($ms_dept as $item)
+            @foreach ($list_of_depts as $item)
                 <!-- First Row -->
                 <div class="col-md-4 mb-3">
                     <div class="card" onclick="handleCardClick('{{ $item->dept }}')">
                         <div class="card-body">
-                            <h6 class="card-title"><span class="status">0</span> {{ $item->dept }}</h6>
+                            <h6 class="card-title"><span class="status">{{ $item->jumlah }}</span> {{ $item->dept }}</h6>
                             {{-- <p class="card-text">{{ $item->dept }}</p> --}}
                         </div>
                     </div>
@@ -99,10 +99,10 @@
                                                 <div class="disabled">● Disabled</div>
                                             @endif
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <a href="/arsipSop/msDept/destroy/{{ $item->id }}" class="btn btn-danger"><i
                                                     class='bx bxs-trash'></i></a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>

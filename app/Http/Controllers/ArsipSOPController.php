@@ -10,9 +10,15 @@ class ArsipSOPController extends Controller
 {
     public function index() {
         $data['ms_dept'] = DB::table('sop_arsip_ms_dept')->get();
+        $data['list_of_depts'] = DB::table('sop_arsip_ms_dept as a')
+                            ->leftJoin('sop_arsip as b', 'a.id', '=', 'b.id_dept')
+                            ->select('a.dept',DB::raw('coalesce(count(b.id), 0) as jumlah'))
+                            ->groupBy('a.dept', 'b.id')
+                            ->get();
+        // dd($data['list_of_depts']);
         $data['ms_produk'] = DB::table('sop_arsip_ms_produk')->get();
         $data['ms_jenis'] = DB::table('sop_arsip_ms_jenis')->get();
-        // dd($data['ms_dept']);
+
         return view('arsipSop.index', $data);
     }
 
@@ -21,7 +27,13 @@ class ArsipSOPController extends Controller
         $data['ms_produk'] = DB::table('sop_arsip_ms_produk')->get();
         $data['ms_jenis'] = DB::table('sop_arsip_ms_jenis')->get();
         $data['id_dept'] = DB::table('sop_arsip_ms_dept')->where('dept', $dept)->first();
-        dd($data['id_dept']);
+
+        $data['sop_arsip'] = DB::table('sop_arsip as a')
+                            ->join('sop_arsip_ms_produk as d', 'a.id_produk', '=', 'd.id')
+                            ->select('a.id', 'a.nra', 'd.produk', 'a.keterangan', 'a.tgl_release', 'a.flag_opr')
+                            ->where('a.id_dept', $data['id_dept']->id)
+                            ->get();
+
         // $data['archive'] = DB::table('sop_arsip')->where('id_dept', )
         return view('arsipSop.index-dept', $data);
     }

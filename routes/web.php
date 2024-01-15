@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ArsipSOPController;
 use App\Http\Controllers\ApprovalSOPController;
+use App\Http\Controllers\SOPOperationController;
 use App\Http\Controllers\MasterUsersTafisController;
 use App\Http\Controllers\MasterSosialisasiController;
 
@@ -83,6 +84,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/arsipSop/msJenis', [ArsipSOPController::class, 'arsipSopMsJenisStore'])->name('arsipSopMsJenisStore');
     Route::get('/arsipSop/msJenis/destroy/{id}', [ArsipSOPController::class, 'arsipSopMsProductDestroy']);
+
+
+    // SOP Operation
+    Route::get('/sopOperation', [SOPOperationController::class, 'index'])->name('sopOperation');
     
     
 
