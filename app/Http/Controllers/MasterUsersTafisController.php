@@ -19,7 +19,7 @@ class MasterUsersTafisController extends Controller
     }
     
     public function masterUsersTafisStore(Request $request) {
-        
+        dd($request->all());
         if(!$request->active) {
             $request->active = 'DISABLED';
         }

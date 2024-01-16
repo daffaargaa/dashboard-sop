@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 
+    
+
     <style>
         .enabled {
             display: inline;
@@ -80,6 +82,9 @@
                 <li class="@yield('sopOperationActive')"><a href="/sopOperation" class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-cog'></i>
                         SOP Operation</a></li>
 
+                <li class="@yield('sopByDeptActive')"><a href="/sopByDept" class="text-decoration-none px-3 py-2 d-block"><i class='bx bxs-cat'></i>
+                        SOP by Dept</a></li>
+
             </ul>
             <hr class="h-color mx-2">
 
@@ -104,8 +109,9 @@
                         <ul class="navbar-nav mb-2 mb-lg-0 px-4 align-items-center">
                             <li class="nav-item d-flex justify-content-center align-items-center">
                                 <h5>
-                                    {{ Auth::user()->name }}
-                                    {{ Auth::user()->nik }}
+                                    {{ Auth::user()->name }} -
+                                    {{ Auth::user()->nik }} -
+                                    {{ Auth::user()->dept }}
                                 </h5>
                             </li>
                         </ul>
@@ -152,6 +158,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </body>
 
 </html>

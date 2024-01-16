@@ -11,11 +11,11 @@ class ArsipSOPController extends Controller
     public function index() {
         $data['ms_dept'] = DB::table('sop_arsip_ms_dept')->get();
         $data['list_of_depts'] = DB::table('sop_arsip_ms_dept as a')
-                            ->leftJoin('sop_arsip as b', 'a.id', '=', 'b.id_dept')
-                            ->select('a.dept',DB::raw('coalesce(count(b.id), 0) as jumlah'))
-                            ->groupBy('a.dept', 'b.id')
-                            ->get();
-        // dd($data['list_of_depts']);
+                                ->leftJoin(DB::raw('(SELECT id_dept, COUNT(id) as jumlah FROM sop_arsip GROUP BY id_dept) as b'), 'a.id', '=', 'b.id_dept')
+                                ->select('a.dept', DB::raw('COALESCE(b.jumlah, 0) as jumlah'))
+                                ->get();
+
+        // dd($data['list_of_depts']);  
         $data['ms_produk'] = DB::table('sop_arsip_ms_produk')->get();
         $data['ms_jenis'] = DB::table('sop_arsip_ms_jenis')->get();
 
@@ -46,7 +46,7 @@ class ArsipSOPController extends Controller
                 $request->active = 'DISABLED';
             }
 
-            $insert = DB::table('sop_arsip')->insert([
+            $id_arsip = DB::table('sop_arsip')->insertGetId([
                 'id_dept' => $request->dept,
                 'id_jenis_arsip' => $request->jenis,
                 'nra' => $request->nra,
@@ -58,6 +58,13 @@ class ArsipSOPController extends Controller
                 'flag_opr' => $request->active,
                 'created_at' => Carbon::now(),
             ]);
+
+            for ($i = 0; $i < count($request->dept_terkait); $i++) { 
+                DB::table('sop_arsip_dept_terkait')->insert([
+                    'id_dept' => $request->dept_terkait[$i],
+                    'id_arsip' => $id_arsip,
+                ]);
+            } 
 
             return back()->with('input_success', 'Input berhasil!!');
         }

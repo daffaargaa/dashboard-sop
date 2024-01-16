@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ArsipSOPController;
+use App\Http\Controllers\SOPbyDeptController;
 use App\Http\Controllers\ApprovalSOPController;
 use App\Http\Controllers\SOPOperationController;
 use App\Http\Controllers\MasterUsersTafisController;
@@ -35,7 +36,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login']);
     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
-});
+}); 
 
 Route::group(['middleware' => 'auth'], function () {
     // Auth
@@ -88,6 +89,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // SOP Operation
     Route::get('/sopOperation', [SOPOperationController::class, 'index'])->name('sopOperation');
+
+    // SOP by Dept
+    Route::get('/sopByDept', [SOPbyDeptController::class, 'index'])->name('sopByDept');
     
     
 
