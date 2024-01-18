@@ -2,12 +2,17 @@
 
 @section('arsipSopActive', 'active')
 
+@section('head')
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">
+@endsection
+
 @section('content')
 
     <div class="container">
         <a href="/arsipSop" class="" style="text-decoration:none; color: black;">
             <h3>
-                {{ $id_dept->dept }}</h3>
+                < {{ $id_dept->dept }}</h3>
         </a>
         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newArchive">Add New Archive</button>
     </div>
@@ -93,7 +98,7 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Dept Terkait</label>
-                            <select id="yourSelectElement" class="form-control" name="dept_terkait[]" multiple>
+                            <select id="countries" name="dept_terkait[]" multiple>
                                 @foreach ($ms_dept as $item)
                                     <option value="{{ $item->id }}">{{ $item->dept }}</option>
                                 @endforeach
@@ -139,7 +144,7 @@
         </div>
     </div>
 
-    
+
 
     <script>
         // Get the checkbox and label elements
@@ -172,4 +177,12 @@
 
 
 
+@endsection
+
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
+    <script>
+        new MultiSelectTag('countries') // id
+    </script>
 @endsection

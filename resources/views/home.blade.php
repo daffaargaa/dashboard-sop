@@ -6,4 +6,5 @@
 
 @section('content')
     <h4>Good Morning, Have a nice day!</h4>
+
 @endsection
