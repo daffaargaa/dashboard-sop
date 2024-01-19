@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sop_ms_sosialisasi', function (Blueprint $table) {
+        Schema::create('sop_ms_sosialisasi_slides', function (Blueprint $table) {
             $table->id();
-            $table->string('nra');
-            $table->string('keterangan');
-            $table->string('file_video');
+            $table->integer('id_ms_sosialisasi');
+            $table->string('slides');
+            $table->string('text_to_voice');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sop_ms_sosialisasi');
+        Schema::dropIfExists('sop_ms_sosialisasi_slides');
     }
 };

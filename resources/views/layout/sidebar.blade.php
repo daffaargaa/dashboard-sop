@@ -14,10 +14,6 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 
-    
-
-    
-
     <style>
         .enabled {
             display: inline;
@@ -163,6 +159,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     @yield('script')
+
+    {{-- Script Active (jika ada) --}}
+    <script>
+        // Get the checkbox and label elements
+        var checkbox = document.getElementById('flexSwitchCheckChecked');
+        var label = document.querySelector('.form-check-label');
+
+        // Add an event listener to detect changes in the checkbox state
+        checkbox.addEventListener('change', function() {
+            // Check if the checkbox is checked
+            if (this.checked) {
+                // If checked, set the label text to 'Active'
+                label.textContent = 'Enabled';
+            } else {
+                // If not checked, set the label text to 'Inactive'
+                label.textContent = 'Disabled';
+            }
+        });
+
+        // Optional: You can define functions to enable/disable functionality
+        function enableFunctionality() {
+            // Your code to enable functionality goes here
+            console.log('Functionality enabled');
+        }
+
+        function disableFunctionality() {
+            // Your code to disable functionality goes here
+            console.log('Functionality disabled');
+        }
+    </script>
 
 
 </body>

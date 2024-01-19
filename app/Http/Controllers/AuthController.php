@@ -28,6 +28,16 @@ class AuthController extends Controller
 
         $user->save();
         return back()->with('success', 'Register Success');
+
+        $insert = User::create([
+            'nik' => $request->nik,
+        ]);
+
+        DB::table('users')->insert([
+            'nik' => $request->nik,
+            ''
+        ]);
+
     }
     
     public function login() 

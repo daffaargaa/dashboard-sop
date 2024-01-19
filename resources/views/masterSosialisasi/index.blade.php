@@ -3,6 +3,47 @@
 @section('masterSosialisasiActive', 'active')
 
 @section('content')
+    <style>
+        .modal-dialog {
+            max-width: 70%;
+        }
+
+        .modal-dialog-slideout {
+            min-height: 100%;
+            margin: 0 0 0 auto;
+            background: #fff;
+        }
+
+        .modal.fade .modal-dialog.modal-dialog-slideout {
+            -webkit-transform: translate(100%, 0)scale(1);
+            transform: translate(100%, 0)scale(1);
+        }
+
+        .modal.fade.show .modal-dialog.modal-dialog-slideout {
+            -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+            display: flex;
+            align-items: stretch;
+            -webkit-box-align: stretch;
+            height: 100%;
+        }
+
+        .modal.fade.show .modal-dialog.modal-dialog-slideout .modal-body {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .modal-dialog-slideout .modal-content {
+            border: 0;
+        }
+
+        .modal-dialog-slideout .modal-header,
+        .modal-dialog-slideout .modal-footer {
+            height: 4rem;
+            display: block;
+        }
+    </style>
+    
     <div class="container">
         @if (Session::has('input_success'))
             <div class="alert alert-success">
@@ -10,65 +51,96 @@
             </div>
         @endif
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSlide">
             Add New
         </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <!-- Modal Add New-->
+        <div class="modal fade" id="ModalSlide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-slideout" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New Sub Dept</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                        <h5 class="modal-title align-right" id="exampleModalLabel">New Materi</h5>
 
-                    <form action="{{ @route('masterUsersTafisStore') }}" method="post">
+                    </div>
+                    <form action="{{ @route('masterSosialisasiStore') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">NRA</label>
-                                <input type="text" class="form-control" name="nra">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Keterangan</label>
-                                <input type="text" class="form-control" name="keterangan">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Slides</label>
-                                <input type="file" class="form-control" name="slides">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Text to Voice</label>
-                                <input type="file" class="form-control" name="text_to_voice">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Video</label>
-                                <input type="file" class="form-control" name="video">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Soal</label>
-                                <input type="file" class="form-control" name="soal">
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch"
-                                        id="flexSwitchCheckChecked" name="active" value="ENABLED" checked>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                            {{-- NRA --}}
+                            <div class="row g-3 align-items-center mb-3">
+                                <div class="col-md-4">
+                                    <label for="" class="col-form-label">NRA</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="nra">
                                 </div>
                             </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            {{-- Keterangan --}}
+                            <div class="row g-3 align-items-top mb-3">
+                                <div class="col-md-4">
+                                    <label for="" class="col-form-label">Keterangan</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea name="keterangan" class="form-control"></textarea>
+                                </div>
                             </div>
+
+                            {{-- Slides --}}
+                            <div class="row g-3 align-items-center mb-3">
+                                <div class="col-md-4">
+                                    <label for="" class="col-form-label">Slides</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="slides">
+                                </div>
+                            </div>
+
+                            {{-- Text-to-voice --}}
+                            <div class="row g-3 align-items-center mb-3">
+                                <div class="col-md-4">
+                                    <label for="" class="col-form-label">Text to Voice</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="text_to_voice">
+                                </div>
+                            </div>
+
+                            {{-- Video --}}
+                            <div class="row g-3 align-items-center mb-3">
+                                <div class="col-md-4">
+                                    <label for="" class="col-form-label">Video</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="video">
+                                </div>
+                            </div>
+
+                            {{-- Soal --}}
+                            <div class="row g-3 align-items-center mb-3">
+                                <div class="col-md-4">
+                                    <label for="" class="col-form-label">Soal</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="soal">
+                                </div>
+                            </div>
+
+                            {{-- Active --}}
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="flexSwitchCheckChecked" name="active" value="Enabled" checked>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Enabled</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -83,29 +155,136 @@
                     <th>NRA</th>
                     <th>Keterangan</th>
                     <th>Materi</th>
+                    <th>Active</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($tafis_ms_users_hdr as $item)
+                @foreach ($ms_sosialisasi as $item)
                     <tr>
-                        <td>{{ $item->departemen }}</td>
-                        <td>{{ $item->sub_dept }}</td>
+                        <td>{{ $item->nra }}</td>
+                        <td>{{ $item->keterangan }}</td>
                         <td>
-                            @if ($item->status == 'ENABLED')
+                            @if ($item->file_video)
+                                <i class='bx bx-slideshow' style='font-size: 24px;'></i>
+                                <i class='bx bx-video' style='font-size: 24px;'></i>
+                            @else
+                                <i class='bx bx-slideshow' style='font-size: 24px;'></i>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($item->status == 'Enabled')
                                 <div class="enabled">● Enabled</div>
                             @else
                                 <div class="disabled">● Disabled</div>
                             @endif
                         </td>
                         <td>
-                            <a href="/masterUsersTafis/destroy/{{ $item->id }}" class="btn btn-danger"><i
-                                    class='bx bxs-trash'></i></a>
+                            <a href="/masterSosialisasi/edit/{{ $item->id }}" class="btn btn-outline-secondary"><i
+                                    class='bx bxs-edit' style='font-size: 20px;'></i></a>
+
+                            
+                            <a href="/masterSosialisasi/destroy/{{ $item->id }}" class="btn btn-outline-danger"><i
+                                    class='bx bx-trash-alt' style='font-size: 20px; color:red;'></i></a>
                         </td>
                     </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
         </table>
     </div>
-    
+
+
+    {{-- Edit Modal --}}
+    <div class="modal fade" id="ModalSlide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-slideout" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title align-right" id="exampleModalLabel">New Materi</h5>
+
+                </div>
+                <form action="{{ @route('masterSosialisasiStore') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        {{-- NRA --}}
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="col-form-label">NRA</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="nra">
+                            </div>
+                        </div>
+
+                        {{-- Keterangan --}}
+                        <div class="row g-3 align-items-top mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="col-form-label">Keterangan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea name="keterangan" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        {{-- Slides --}}
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="col-form-label">Slides</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="file" class="form-control" name="slides">
+                            </div>
+                        </div>
+
+                        {{-- Text-to-voice --}}
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="col-form-label">Text to Voice</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="file" class="form-control" name="text_to_voice">
+                            </div>
+                        </div>
+
+                        {{-- Video --}}
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="col-form-label">Video</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="file" class="form-control" name="video">
+                            </div>
+                        </div>
+
+                        {{-- Soal --}}
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="col-form-label">Soal</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="file" class="form-control" name="soal">
+                            </div>
+                        </div>
+
+                        {{-- Active --}}
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckChecked" name="active" value="Enabled" checked>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Enabled</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
 @endsection

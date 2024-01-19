@@ -50,6 +50,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Master Sosialisasi
     Route::get('/masterSosialisasi', [MasterSosialisasiController::class, 'index']);
+    Route::post('/masterSosialisasi', [MasterSosialisasiController::class, 'masterSosialisasiStore'])->name('masterSosialisasiStore');
+    Route::post('/masterSosialisasi/edit/{id}', [MasterSosialisasiController::class, 'masterSosialisasiEdit']);
+    // Route::get('/masterSosialisasi/destroy/{id}', [MasterSosialisasiController::class, 'masterSosialisasiDestroy']);
     
 
     // Approval
