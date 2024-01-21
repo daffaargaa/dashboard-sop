@@ -36,7 +36,7 @@ class MasterSosialisasiController extends Controller
         
         if ($slides && $video) {
             Storage::putFileAs($path, $slides, $slides->getClientOriginalName());
-            Storage::putFileAs($path . '/video', $video, $video->getClientOriginalName());
+            Storage::putFileAs($path . '/video', $video, $nra . '.mp4');
         }
 
         // Convert Start
@@ -45,7 +45,7 @@ class MasterSosialisasiController extends Controller
 
         $command = "magick -density 400 \"" . $dir . "\" -resize 800x -quality 100 \"" . $out . "-%d.png\"";
         exec($command, $output, $returnCode);        
-        // Convert End
+        // Convert End                                                                                                                               
 
         if(!$request->active) {
             $request->active = 'DISABLED';
@@ -75,7 +75,24 @@ class MasterSosialisasiController extends Controller
         return back()->with('input_success', 'Input berhasil!!!');
     }
 
-    public function masterSosialisasiEdit($id) {
-        dd('hallo' . $id);
+    public function masterSosialisasiEdit(Request $request, $id) {
+        // dd($request->all());
+        try {
+
+            if(!$request->active) {
+                $request->active = 'Disabled';
+            }
+
+            DB::table('sop_ms_sosialisasi')->where('id', $id)->update([
+                'nra' => $request->nra,
+                'keterangan' => $request->keterangan,
+                'status' => $request->active,
+            ]);
+            
+            return back()->with('update_success', 'Update berhasil!!!');
+            
+        } catch (QueryException $e) {
+            return back()->with('update_failed', 'Update gagal' . $e->getMessage());
+        }
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ArsipSOPController;
 use App\Http\Controllers\SOPbyDeptController;
 use App\Http\Controllers\ApprovalSOPController;
+use App\Http\Controllers\KnowledgeSOPController;
 use App\Http\Controllers\SOPOperationController;
 use App\Http\Controllers\MasterUsersTafisController;
 use App\Http\Controllers\MasterSosialisasiController;
@@ -51,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Master Sosialisasi
     Route::get('/masterSosialisasi', [MasterSosialisasiController::class, 'index']);
     Route::post('/masterSosialisasi', [MasterSosialisasiController::class, 'masterSosialisasiStore'])->name('masterSosialisasiStore');
-    Route::post('/masterSosialisasi/edit/{id}', [MasterSosialisasiController::class, 'masterSosialisasiEdit']);
+    Route::post('/masterSosialisasi/edit/{id}', [MasterSosialisasiController::class, 'masterSosialisasiEdit'])->name('masterSosialisasiEdit');
     // Route::get('/masterSosialisasi/destroy/{id}', [MasterSosialisasiController::class, 'masterSosialisasiDestroy']);
     
 
@@ -72,6 +73,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/approvalSop', [ApprovalSOPController::class, 'approvalSopStore'])->name('approvalSopStore');
     Route::get('/approvalSop/download/{id}', [ApprovalSOPController::class, 'approvalSopDownload']);
     Route::get('/approvalSop/details/{id}', [ApprovalSOPController::class, 'approvalSopDetails']);
+
+    // Knowledge SOP
+    Route::get('/knowledgeSop', [KnowledgeSOPController::class, 'index']);
+    Route::post('/knowledgeSop', [KnowledgeSOPController::class, 'knowledgeSopStore'])->name('knowledgeSopStore');
+    Route::get('/knowledgeSop/{nra}', [KnowledgeSOPController::class, 'knowledgeSopDetails']);
 
     // Arsip SOP
     Route::get('/arsipSop', [ArsipSOPController::class, 'index']);

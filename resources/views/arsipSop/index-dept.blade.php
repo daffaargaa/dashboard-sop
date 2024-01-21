@@ -12,7 +12,7 @@
     <div class="container">
         <a href="/arsipSop" class="" style="text-decoration:none; color: black;">
             <h3>
-                < {{ $id_dept->dept }}</h3>
+                < {{ $id_dept->dept }} </h3>
         </a>
         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newArchive">Add New Archive</button>
     </div>

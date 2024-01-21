@@ -52,7 +52,7 @@
                 //     // Add URLs for other cards
                 // };
 
-                
+
 
                 // // Get the URL based on the cardName
                 // const url = cardUrls[cardName];
@@ -99,10 +99,10 @@
                                                 <div class="disabled">● Disabled</div>
                                             @endif
                                         </td>
-                                        {{-- <td>
+                                        <td>
                                             <a href="/arsipSop/msDept/destroy/{{ $item->id }}" class="btn btn-danger"><i
                                                     class='bx bxs-trash'></i></a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

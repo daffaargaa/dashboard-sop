@@ -64,7 +64,8 @@
                 </li>
 
                 <li class="@yield('masterSosialisasiActive')"><a href="/masterSosialisasi"
-                        class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-desktop'></i> Master Sosialisasi</a>
+                        class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-desktop'></i> Master
+                        Sosialisasi</a>
                 </li>
 
                 <li class="@yield('fppSopActive')"><a href="/fppSop" class="text-decoration-none px-3 py-2 d-block"><i
@@ -75,13 +76,20 @@
                             class='bx bx-calendar-check'></i>
                         Approval SOP</a></li>
 
-                <li class="@yield('arsipSopActive')"><a href="/arsipSop" class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-box'></i>
+                <li class="@yield('knowledgeSopActive')"><a href="/knowledgeSop" class="text-decoration-none px-3 py-2 d-block"><i
+                            class='bx bx-chalkboard'></i>
+                        Knowledge SOP</a></li>
+
+                <li class="@yield('arsipSopActive')"><a href="/arsipSop" class="text-decoration-none px-3 py-2 d-block"><i
+                            class='bx bx-box'></i>
                         Arsip SOP</a></li>
 
-                <li class="@yield('sopOperationActive')"><a href="/sopOperation" class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-cog'></i>
+                <li class="@yield('sopOperationActive')"><a href="/sopOperation" class="text-decoration-none px-3 py-2 d-block"><i
+                            class='bx bx-cog'></i>
                         SOP Operation</a></li>
 
-                <li class="@yield('sopByDeptActive')"><a href="/sopByDept" class="text-decoration-none px-3 py-2 d-block"><i class='bx bxs-cat'></i>
+                <li class="@yield('sopByDeptActive')"><a href="/sopByDept" class="text-decoration-none px-3 py-2 d-block"><i
+                            class='bx bxs-cat'></i>
                         SOP by Dept</a></li>
 
             </ul>
@@ -157,7 +165,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+
     @yield('script')
 
     {{-- Script Active (jika ada) --}}

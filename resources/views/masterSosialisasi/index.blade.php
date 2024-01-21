@@ -49,6 +49,10 @@
             <div class="alert alert-success">
                 {{ Session::get('input_success') }}
             </div>
+        @elseif (Session::has('update_success'))
+            <div class="alert alert-success">
+                {{ Session::get('update_success') }}
+            </div>
         @endif
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newMateriModal">
@@ -64,7 +68,7 @@
                         <h5 class="modal-title align-right" id="exampleModalLabel">New Materi</h5>
 
                     </div>
-                    <form action="{{ @route('masterSosialisasiStore') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('masterSosialisasiStore') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             {{-- NRA --}}
@@ -138,8 +142,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -190,8 +194,6 @@
                             <a href="/masterSosialisasi/destroy/{{ $item->id }}" class="btn btn-outline-danger"><i
                                     class='bx bx-trash-alt' style='font-size: 20px; color:red;'></i></a>
 
-
-
                             {{-- Edit Modal --}}
                             <div class="modal fade" id="editMateriModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -201,7 +203,8 @@
                                             <h5 class="modal-title align-right" id="exampleModalLabel">New Materi</h5>
 
                                         </div>
-                                        <form action="#" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('masterSosialisasiEdit', ['id' => $item->id]) }}"
+                                            method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-body">
                                                 {{-- NRA --}}
@@ -210,7 +213,8 @@
                                                         <label for="" class="col-form-label">NRA</label>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="nra" value={{ $item->nra }}>
+                                                        <input type="text" class="form-control" name="nra"
+                                                            value={{ $item->nra }}>
                                                     </div>
                                                 </div>
 
@@ -277,9 +281,9 @@
 
                                             </div>
                                             <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </form>
                                     </div>
@@ -293,99 +297,5 @@
             </tbody>
         </table>
     </div>
-
-
-    {{-- Edit Modal --}}
-    <div class="modal fade" id="editMateriModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-slideout" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title align-right" id="exampleModalLabel">New Materi</h5>
-
-                </div>
-                <form action="{{ @route('masterSosialisasiStore') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        {{-- NRA --}}
-                        <div class="row g-3 align-items-center mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="col-form-label">NRA</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="nra">
-                            </div>
-                        </div>
-
-                        {{-- Keterangan --}}
-                        <div class="row g-3 align-items-top mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="col-form-label">Keterangan</label>
-                            </div>
-                            <div class="col-md-8">
-                                <textarea name="keterangan" class="form-control"></textarea>
-                            </div>
-                        </div>
-
-                        {{-- Slides --}}
-                        <div class="row g-3 align-items-center mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="col-form-label">Slides</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="file" class="form-control" name="slides">
-                            </div>
-                        </div>
-
-                        {{-- Text-to-voice --}}
-                        <div class="row g-3 align-items-center mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="col-form-label">Text to Voice</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="file" class="form-control" name="text_to_voice">
-                            </div>
-                        </div>
-
-                        {{-- Video --}}
-                        <div class="row g-3 align-items-center mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="col-form-label">Video</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="file" class="form-control" name="video">
-                            </div>
-                        </div>
-
-                        {{-- Soal --}}
-                        <div class="row g-3 align-items-center mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="col-form-label">Soal</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="file" class="form-control" name="soal">
-                            </div>
-                        </div>
-
-                        {{-- Active --}}
-                        <div class="mb-3">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch"
-                                    id="flexSwitchCheckChecked" name="active" value="Enabled" checked>
-                                <label class="form-check-label" for="flexSwitchCheckChecked">Enabled</label>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
 
 @endsection
