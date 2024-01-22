@@ -36,7 +36,11 @@
                             <td>{{ $item->produk }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>
-                                <a href="#" class="btn btn-secondary"><i class="bx bx-link-external"></i></a>
+                                <a href="/arsipSop/download/{{ str_replace('/', '_', $item->nra) }}"
+                                    class="btn btn-outline-secondary"><i class='bx bx-download'></i></a>
+                                <button class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#editArsipModal"><i class="bx bxs-edit"
+                                        style='font-size: 20px;'></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -58,7 +62,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 {{-- Your body goes here --}}
-                <form action="{{ route('arsipSopNewArchiveStore') }}" method="POST">
+                <form action="{{ route('arsipSopNewArchiveStore') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
 
@@ -128,8 +132,8 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Flag OPR</label>
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                                    name="active" value="ENABLED" checked>
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckChecked" name="active" value="ENABLED" checked>
                                 <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
                             </div>
                         </div>

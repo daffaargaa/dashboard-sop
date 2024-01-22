@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ArsipSOPController extends Controller
 {
@@ -40,6 +41,37 @@ class ArsipSOPController extends Controller
 
     public function arsipSopNewArchiveStore(Request $request) {
         // dd($request->all());
+
+        // Convert NRA / with _
+        $nra = str_replace('/', '_', $request->nra);
+
+        // Define the path for the new folder
+        $path = 'public/arsipSop/' . $nra;
+
+        // Create the folder per NRA that is inputted by the user
+        Storage::makeDirectory($path);
+
+        // Store file into the folder
+        $pdf = $request->file('file');
+
+        // first make the folder for the pdf and view to store the png
+        Storage::makeDirectory($path . '/pdf');
+        Storage::makeDirectory($path . '/view');
+        
+        // put the pdf into a folder and pdf into a folder
+        if ($pdf) {
+            Storage::putFileAs($path . '/pdf', $pdf, $nra . '.pdf');    
+        }
+
+        // Convert Start
+        $dir = public_path('storage\arsipSop\\' . $nra . '\pdf\\' . $nra . '.pdf');
+        $out = public_path('storage\arsipSop\\' . $nra . '\\' . 'view\\');
+
+        $command = "magick -density 400 \"" . $dir . "\" -resize 800x -quality 100 \"" . $out . "-%d.png\"";
+        exec($command, $output, $returnCode);        
+        // Convert End 
+
+        // Insert into DB
         try {
             
             if(!$request->active) {
@@ -73,6 +105,11 @@ class ArsipSOPController extends Controller
             // echo "Insert gagal: " . $e->getMessage();
             return back()->with('input_failed', 'Input gagal: ' . $e->getMessage());
         }
+    }
+
+    public function arsipSopDownload ($nra) {
+        $path = public_path('storage\arsipSop\\' . $nra . '\pdf\\' . $nra . '.pdf');
+        return response()->download($path);
     }
 
     public function arsipSopMsDeptStore(Request $request) {

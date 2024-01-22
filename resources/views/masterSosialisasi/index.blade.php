@@ -200,7 +200,7 @@
                                 <div class="modal-dialog modal-dialog-slideout" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title align-right" id="exampleModalLabel">New Materi</h5>
+                                            <h5 class="modal-title align-right" id="exampleModalLabel">Edit Materi</h5>
 
                                         </div>
                                         <form action="{{ route('masterSosialisasiEdit', ['id' => $item->id]) }}"

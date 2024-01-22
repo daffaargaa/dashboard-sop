@@ -23,7 +23,7 @@
                         <td>{{ $item->judul }}</td>
                         <td>{{ $item->tgl_release }}</td>
                         <td>
-                            <a href="#" class="btn btn-secondary"><i class="bx bx-link-external"></i></a>
+                            <a href="/sopOperation/{{ str_replace('/', '_', $item->nra) }}" class="btn btn-outline-secondary"><i class="bx bx-link-external"></i></a>
                         </td>
                     </tr>
                 @endforeach

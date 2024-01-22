@@ -84,6 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/arsipSop/{dept}', [ArsipSOPController::class, 'indexDept']);
     Route::post('/arsipSop/newArchive', [ArsipSOPController::class, 'arsipSopNewArchiveStore'])->name('arsipSopNewArchiveStore');
     Route::get('/arsipSop/destroy/{id}', [ArsipSOPController::class, 'arsipSopDestroy']);
+    Route::get('/arsipSop/download/{nra}', [ArsipSOPController::class, 'arsipSopDownload']);
 
 
     Route::post('/arsipSop/msDept', [ArsipSOPController::class, 'arsipSopMsDeptStore'])->name('arsipSopMsDeptStore');
@@ -98,6 +99,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // SOP Operation
     Route::get('/sopOperation', [SOPOperationController::class, 'index'])->name('sopOperation');
+    Route::get('/sopOperation/{nra}', [SOPOperationController::class, 'sopOperationDetails']);
 
     // SOP by Dept
     Route::get('/sopByDept', [SOPbyDeptController::class, 'index'])->name('sopByDept');

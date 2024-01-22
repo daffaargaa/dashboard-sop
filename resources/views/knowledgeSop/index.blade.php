@@ -73,7 +73,7 @@
     <div class="container">
         <div class="row">
             @foreach ($sop_knowledge as $item)
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card" style="width: 18rem;"
                         onclick="sopKnowledgeDetails('{{ str_replace('/', '_', $item->nra) }}')">
                         <img src="{{ asset('storage/masterSosialisasi/' . str_replace('/', '_', $item->nra) . '/slides/-0.png') }}"

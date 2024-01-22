@@ -31,6 +31,7 @@ class KnowledgeSOPController extends Controller
     }
 
     public function knowledgeSopDetails($nra) {
+        
         return view('knowledgeSop.details')->with([
             'nra' => $nra,
         ]);

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sop_knowledge', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_sosialisasi');
+            $table->unsignedBigInteger('id_ms_sosialisasi');
             $table->string('nra');
             $table->string('judul');
             $table->date('tgl_efektif');

@@ -1,21 +1,21 @@
 @extends('layout.sidebar')
 
-@section('knowledgeSopActive', 'active')
+@section('sopOperationActive', 'active')
 
 @section('content')
     {{-- Title --}}
     <div class="container">
         <h3>
-            <a href="/knowledgeSop" style="text-decoration:none; color: black;">
+            <a href="/sopOperation" style="text-decoration:none; color: black;">
                 < {{ str_replace('_', '/', $nra) }} </a>
         </h3>
     </div>
 
     <?php
     
-    // Ambil data file di dalam folderP
+    // Ambil data file di dalam folder
     // $folder = pathinfo($data->file, PATHINFO_FILENAME);
-    $path = public_path('storage/masterSosialisasi/' . $nra . '/slides');
+    $path = public_path('storage/arsipSop/' . $nra . '/view');
     $files = scandir($path);
     $files = array_diff($files, ['.', '..']);
     ?>
@@ -31,8 +31,8 @@
     </div>
 
     <div class="container">
-        <a href="/knowledgeSop" class="btn btn-outline-secondary">Back</a>
-        <a class="btn btn-outline-secondary" id="changeButton">Next</a>
+        <a href="/sopOperation" class="btn btn-outline-secondary">Back</a>
+        <!-- <a class="btn btn-outline-secondary" id="changeButton">Next</a> -->
     </div>
 
     {{-- Script --}}
@@ -84,7 +84,7 @@
         });
     </script>
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get the elements
             const imgOldElement = document.getElementById('gallery-image');
@@ -109,6 +109,6 @@
                 imgOldElement.replaceWith(videoElement);
             });
         });
-    </script>
+    </script> -->
 
 @endsection

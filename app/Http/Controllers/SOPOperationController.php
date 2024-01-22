@@ -11,4 +11,10 @@ class SOPOperationController extends Controller
         $data['sop_opr'] = DB::table('sop_arsip')->where('flag_opr', 'ENABLED')->get();
         return view('sopOperation.index', $data);
     }
+
+    public function sopOperationDetails ($nra) {
+        return view('sopOperation.details')->with([
+            'nra' => $nra,
+        ]);
+    }
 }
