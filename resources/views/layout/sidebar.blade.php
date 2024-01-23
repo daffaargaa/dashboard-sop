@@ -76,6 +76,10 @@
                             class='bx bx-calendar-check'></i>
                         Approval SOP</a></li>
 
+                <li class="@yield('sosialisasiSopActive')"><a href="/sosialisasiSop"
+                        class="text-decoration-none px-3 py-2 d-block"><i class='bx bx-cool'></i>
+                        Sosialisasi SOP</a></li>
+
                 <li class="@yield('knowledgeSopActive')"><a href="/knowledgeSop" class="text-decoration-none px-3 py-2 d-block"><i
                             class='bx bx-chalkboard'></i>
                         Knowledge SOP</a></li>

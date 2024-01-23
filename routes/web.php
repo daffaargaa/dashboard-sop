@@ -10,6 +10,7 @@ use App\Http\Controllers\SOPbyDeptController;
 use App\Http\Controllers\ApprovalSOPController;
 use App\Http\Controllers\KnowledgeSOPController;
 use App\Http\Controllers\SOPOperationController;
+use App\Http\Controllers\SosialisasiSOPController;
 use App\Http\Controllers\MasterUsersTafisController;
 use App\Http\Controllers\MasterSosialisasiController;
 
@@ -73,6 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/approvalSop', [ApprovalSOPController::class, 'approvalSopStore'])->name('approvalSopStore');
     Route::get('/approvalSop/download/{id}', [ApprovalSOPController::class, 'approvalSopDownload']);
     Route::get('/approvalSop/details/{id}', [ApprovalSOPController::class, 'approvalSopDetails']);
+
+    // Sosialisasi SOP
+    Route::get('/sosialisasiSop', [SosialisasiSOPController::class, 'index']);
 
     // Knowledge SOP
     Route::get('/knowledgeSop', [KnowledgeSOPController::class, 'index']);
