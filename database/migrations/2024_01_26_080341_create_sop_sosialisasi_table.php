@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('re_attempt_test');
             $table->integer('limit_waktu_test');
             $table->integer('batas_nilai');
+            $table->string('status');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

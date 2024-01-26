@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 
+    {{-- Buat search di Dropdown --}}
+    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
+    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
+
     <style>
         .enabled {
             display: inline;
@@ -36,6 +40,13 @@
             padding: 5px;
             border-radius: 10px;
             background-color: #796695;
+            color: #FFFFFF;
+        }
+        .waiting {
+            display: inline;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: #9A9A9A;
             color: #FFFFFF;
         }
     </style>

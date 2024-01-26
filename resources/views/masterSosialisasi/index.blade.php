@@ -188,14 +188,14 @@
                                     class='bx bxs-edit' style='font-size: 20px;'></i></a> --}}
 
                             <button class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                data-bs-target="#editMateriModal"><i class="bx bxs-edit"
+                                data-bs-target="#editMateriModal_{{ $item->id }}"><i class="bx bxs-edit"
                                     style='font-size: 20px;'></i></button>
 
                             <a href="/masterSosialisasi/destroy/{{ $item->id }}" class="btn btn-outline-danger"><i
                                     class='bx bx-trash-alt' style='font-size: 20px; color:red;'></i></a>
 
                             {{-- Edit Modal --}}
-                            <div class="modal fade" id="editMateriModal" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="editMateriModal_{{ $item->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-slideout" role="document">
                                     <div class="modal-content">

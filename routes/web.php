@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Sosialisasi SOP
     Route::get('/sosialisasiSop', [SosialisasiSOPController::class, 'index']);
+    Route::post('/sosialisasiSop', [SosialisasiSOPController::class, 'sosialisasiSopStore'])->name('sosialisasiSopStore');
+    Route::get('/sosialisasiSop/details/{id}', [SosialisasiSOPController::class, 'sosialisasiSopDetails']);
 
     // Knowledge SOP
     Route::get('/knowledgeSop', [KnowledgeSOPController::class, 'index']);

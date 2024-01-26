@@ -3,9 +3,7 @@
 @section('knowledgeSopActive', 'active')
 
 @section('head')
-    {{-- Buat search di Dropdown --}}
-    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
-    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
+    
 @endsection
 
 @section('content')

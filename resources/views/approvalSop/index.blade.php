@@ -4,13 +4,7 @@
 
 @section('content')
     <style>
-        .waiting {
-            display: inline;
-            padding: 5px;
-            border-radius: 10px;
-            background-color: #9A9A9A;
-            color: #FFFFFF;
-        }
+        
     </style>
     <div class="container">
         @if (Session::has('input_success'))
