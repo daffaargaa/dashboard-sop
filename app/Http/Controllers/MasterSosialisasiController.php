@@ -18,7 +18,7 @@ class MasterSosialisasiController extends Controller
     }
 
     public function masterSosialisasiStore (Request $request) {
-        // dd($request->all());
+        // dd($request->file('text_to_voice'));
 
         // Convert NRA - with _
         $nra = str_replace('/', '_', $request->nra);
@@ -67,6 +67,7 @@ class MasterSosialisasiController extends Controller
         $slidesItem = scandir($out);
         $slidesItem = array_diff($slidesItem, ['.', '..']);
         
+
         // Proses insert text_to_voice ke db
         $ttv = Excel::toCollection(new TTVImport(), $request->file('text_to_voice'));
         $ttv_files = [];

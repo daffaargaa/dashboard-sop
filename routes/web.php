@@ -5,6 +5,7 @@ use App\Http\Controllers\FPPController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DraftController;
+use App\Http\Controllers\IktFinaController;
 use App\Http\Controllers\ArsipSOPController;
 use App\Http\Controllers\SOPbyDeptController;
 use App\Http\Controllers\ApprovalSOPController;
@@ -110,9 +111,14 @@ Route::group(['middleware' => 'auth'], function () {
     // SOP by Dept
     Route::get('/sopByDept', [SOPbyDeptController::class, 'index'])->name('sopByDept');
     
-    
+    // IKT Fina
+    Route::get('/iktFina', [IktFinaController::class, 'index'])->name('iktFina');
+    Route::post('/iktPreview', [IktFinaController::class, 'iktPreview']);
+    Route::post('/iktStore', [IktFinaController::class, 'iktStore']);
 
+        
 });
+
 
 
 // Test PDF
