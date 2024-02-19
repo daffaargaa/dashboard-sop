@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class TafisMsSubdept extends Model
 {
     use HasFactory;
+
 }

@@ -13,17 +13,21 @@
         <form id="iktPreviewForm" action="/iktPreview" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <a href="{{ asset('storage/ikt.csv') }}" class="btn btn-outline-success btn-sm">Template Upload
                         (.csv)</a>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label"> Input File</label>
-                    <input id="fileIkt" type="file" name="file_ikt" class="form-control">
+                <div class="col-md-3">
+                    <label class="form-label"> Input Tanggal</label>
+                    <input type="date" name="tanggal_target" class="form-control" required>
                 </div>
-                {{-- <div class="col-md-3">
+                <div class="col-md-3">
+                    <label class="form-label"> Input File</label>
+                    <input id="fileIkt" type="file" name="file_ikt" class="form-control" required>
+                </div>
+                <div class="col-md-3">
                     <button type="submit" class="btn btn-outline-primary">Process</button>
-                </div> --}}
+                </div>
             </div>
         </form>
     </div>
@@ -35,11 +39,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <input type="hidden" name="data" value="{{ json_encode($data) }}">
-                        <button type="submit" class="btn btn-success btn-sm">Simpan</button>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label"> Input Tanggal</label>
-                        <input type="date" name="tanggal_target" class="form-control">
+                        <input type="hidden" name="tanggal" value="{{ json_encode($tanggal) }}">
+                        <button type="submit" class="btn btn-success btn-sm" onclick="confirm('Apakah anda yakin data sudah benar?')">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -52,6 +53,7 @@
             <thead>
                 <tr>
                     <th>Kode Store</th>
+                    <th>Nama Store</th>
                     <th>Net Sales</th>
                     <th>Net Profit</th>
                     <th>Rp Margin</th>
@@ -65,6 +67,7 @@
                     @foreach ($data as $item)
                         <tr>
                             <td>{{ $item['kd_store'] }}</td>
+                            <td>{{ $item['nama_store'] }}</td>
                             <td>{{ $item['net_sales'] }}</td>
                             <td>{{ $item['net_profit'] }}</td>
                             <td>{{ $item['rp_margin'] }}</td>
@@ -79,10 +82,17 @@
     </div>
 
     <script>
-        document.getElementById('fileIkt').addEventListener('change', () => {
-            document.getElementById('iktPreviewForm').submit();
-        });
-        console.log('berhasil');
+        // document.getElementById('fileIkt').addEventListener('change', () => {
+        //     const tanggal = document.getElementById('tanggal');
+
+        //     if (tanggal.value != '') {
+        //             document.getElementById('iktPreviewForm').submit();
+        //     }
+        //     else {
+        //         alert('Tolong input tanggal terlebih dahulu!');
+        //     }
+            
+        // });
     </script>
 
 @endsection

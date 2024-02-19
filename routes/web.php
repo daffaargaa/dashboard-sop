@@ -116,6 +116,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/iktPreview', [IktFinaController::class, 'iktPreview']);
     Route::post('/iktStore', [IktFinaController::class, 'iktStore']);
 
+    Route::get('/iktStoreConfirmation', [IktFinaController::class, 'iktStoreConfirmation']);
+    Route::post('/iktStoreAfterConfirmation', [IktFinaController::class, 'iktStoreAfterConfirmation']);
+
         
 });
 
