@@ -81,6 +81,12 @@
         </table>
     </div>
 
+
+    @if ($tokoTidakAktif > 0)
+    <script>
+        alert('Terdapat toko yang tidak aktif! Jumlah toko: {{ $tokoTidakAktif }}');
+    </script>
+    @endif
     <script>
         // document.getElementById('fileIkt').addEventListener('change', () => {
         //     const tanggal = document.getElementById('tanggal');

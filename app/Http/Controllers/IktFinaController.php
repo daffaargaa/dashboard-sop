@@ -14,7 +14,12 @@ class IktFinaController extends Controller
 {
     public function index() {
         $data = [];
-        return view('iktFina.index')->with('data', $data);
+        $tokoTidakAktif = 0;
+
+        return view('iktFina.index')->with([
+            'data' => $data,
+            'tokoTidakAktif' => $tokoTidakAktif,
+        ]);
     }
 
     public function iktPreview(Request $request) {
@@ -26,6 +31,8 @@ class IktFinaController extends Controller
 
         $data = [];
 
+        $tokoTidakAktif = 0;
+
         foreach ($tmp as $item) {
             $kd_store = $item['kd_store'];
             $query = DB::table('store')->where('kd_store', $kd_store)->get();
@@ -33,6 +40,7 @@ class IktFinaController extends Controller
             $tmpArray = [
                 'kd_store' => $kd_store,
                 'nama_store' => $query[0]->nama_store,
+                'status' => $query[0]->status,
                 'net_sales' => $item['net_sales'],
                 'net_profit' => $item['net_profit'],
                 'rp_margin' => $item['rp_margin'],
@@ -41,12 +49,19 @@ class IktFinaController extends Controller
                 'product_loss' => $item['product_loss'],
             ];
 
-            $data[] = $tmpArray;
+            if ($tmpArray['status'] === 'T') {
+                $data[] = $tmpArray;
+            }
+            else {
+                $tokoTidakAktif++;
+                continue;
+            }
         }
 
         return view('iktFina.index')->with([
             'data' => $data,
-            'tanggal' => $tanggal
+            'tanggal' => $tanggal,
+            'tokoTidakAktif' => $tokoTidakAktif,
         ]);
     }
 
@@ -168,7 +183,8 @@ class IktFinaController extends Controller
 
         $data = [];
         Alert::success('Sukses', 'Suksessss!');
-        return view('iktFina.index')->with('data', $data);
+        return redirect()->route('iktFina')->with('data', $data);
+        // return view('iktFina.index')->with('data', $data);
         
     }
 }
