@@ -77,7 +77,7 @@ class IktFinaController extends Controller
         $tglTerakhir = Carbon::now()->endOfMonth()->subDays(3); // less than equals
         // $tanggalHariIni = Carbon::createFromFormat('Y-m-d', '2024-02-27'); // buat testing
 
-        if (Carbon::now()->lte($tglTerakhir)) {
+        if (!Carbon::now()->lte($tglTerakhir)) {
             // dd('bulan baru');
             return Carbon::now()->startOfMonth()->addMonth();   
         }
