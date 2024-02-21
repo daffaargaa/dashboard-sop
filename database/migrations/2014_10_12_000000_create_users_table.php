@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('nik');
             $table->string('name');
+
+            // Bawaan
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            // 0 = user, 1 = editor, 2 = admin 
+            // ----
+
             $table->tinyInteger('role')->default(0);
             $table->string('dept')->nullable();
             $table->string('nik_atasan')->nullable();

@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+@include('sweetalert::alert')
     <div class="wrapper">
         <form action="{{ route('register') }}" method="post">
             @csrf
@@ -57,6 +59,8 @@
 
         </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

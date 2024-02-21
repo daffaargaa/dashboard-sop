@@ -8,16 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
-    public function register() 
-    {
+    public function register() {
         return view('register');
     }
 
-    public function registerPost (Request $request)
-    {
+    public function registerPost (Request $request) {
         $user = new User();
         $user->nik = $request->nik;
         $user->name = $request->name;
@@ -27,26 +26,25 @@ class AuthController extends Controller
         $user->dept = $request->dept;
 
         $user->save();
+        Alert::success('Ganteng', '<3');
         return back()->with('success', 'Register Success');
 
-        $insert = User::create([
-            'nik' => $request->nik,
-        ]);
+        // $insert = User::create([
+        //     'nik' => $request->nik,
+        // ]);
 
-        DB::table('users')->insert([
-            'nik' => $request->nik,
-            ''
-        ]);
+        // DB::table('users')->insert([
+        //     'nik' => $request->nik,
+        //     ''
+        // ]);
 
     }
     
-    public function login() 
-    {
+    public function login() {
         return view('loginv2');
     }
 
-    public function loginPost(Request $request)
-    {
+    public function loginPost(Request $request) {
         $credentials = [
             'email' => $request->email,
             'password'=> $request->password
@@ -76,12 +74,11 @@ class AuthController extends Controller
                 'success' => 'Login berhasil',
             ]);
         }
-
+        
         return back()->with('error', ' Email atau password salah');
     }
 
-    public function logout() 
-    {
+    public function logout() {
         Auth::logout();
 
         return redirect()->route('login');

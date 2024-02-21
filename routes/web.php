@@ -41,6 +41,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 }); 
 
+
 Route::group(['middleware' => 'auth'], function () {
     // Auth
     Route::get('/home', [HomeController::class, 'index']);
