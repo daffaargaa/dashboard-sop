@@ -45,12 +45,15 @@ class AuthController extends Controller
     }
 
     public function loginPost(Request $request) {
+
         $credentials = [
             'email' => $request->email,
+            // 'nik' => $request->nik,
             'password'=> $request->password
         ];
 
         $user = DB::table('users')->where('email', '=', $request->email)->first();
+        // $user = DB::table('users')->where('email', '=', $request->nik)->first();
 
         if(Auth::attempt($credentials)) {
 

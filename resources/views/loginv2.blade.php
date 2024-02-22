@@ -25,6 +25,10 @@
                 <input type="email" name="email" id="#" placeholder="Email" required>
                 <i class="bx bxs-user"></i>
             </div>
+            {{-- <div class="input-box">
+                <input type="text" name="nik" id="#" placeholder="NIK" required>
+                <i class="bx bxs-user"></i>
+            </div> --}}
             <div class="input-box">
                 <input type="password" name="password" placeholder="Password" required>
                 <i class="bx bxs-lock-alt"></i>
